@@ -3,9 +3,15 @@
 </template>
 
 <script>
-    export default {
+  import { mapGetters } from 'vuex'
 
+  export default {
+    computed: {
+      ...mapGetters({
+        events: 'getEventsList'
+      })
     }
+  }
 </script>
 
 <style lang="scss">
