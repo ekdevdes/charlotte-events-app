@@ -6,7 +6,9 @@ https://api.sheety.co/ce216392-6bb9-4b1f-8940-7d293edf62e4
 
 Maybe could try hosting on Github Pages since that's free or try something with Github Actions that's free and easy to use
 
-Perhaps use Vue Material for the UI: https://vuematerial.io/components/select
+Uses Vue Material for the UI: https://vuematerial.io/components/select
+List of Components available to import: https://github.com/vuematerial/vue-material/tree/dev/dist/components
+
 
 ## To Do
 + ~~List all events within a week of the current date~~
