@@ -1,5 +1,5 @@
 <template>
-    <h1>Event Details</h1>
+    <h1 class="event-view__header">Event Details</h1>
 </template>
 
 <script>
@@ -9,8 +9,4 @@
 </script>
 
 <style lang="scss">
-    html,
-    body {
-        font-family: Helvetica, Arial, sans-serif;
-    }
 </style>

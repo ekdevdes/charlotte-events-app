@@ -15,6 +15,6 @@
 <style lang="scss">
     html,
     body {
-        font-family: Helvetica, Arial, sans-serif;
+        font-family: "Roboto", Helvetica, Arial, sans-serif;
     }
 </style>
