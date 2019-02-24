@@ -7,10 +7,13 @@
   "private": true,
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "compile": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "move": "node scripts/move.js",
+    "build": "npm run compile && npm run move"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "copy-dir": "^0.4.0",
     "vue": "^2.5.11",
     "vue-material": "^1.0.0-beta-10.2",
     "vue-router": "^3.0.2",
