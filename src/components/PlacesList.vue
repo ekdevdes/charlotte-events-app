@@ -1,5 +1,5 @@
 <template>
-    <h1 class="event-view__header">Event Details</h1>
+    <h1 class="event-view__header">Places</h1>
 </template>
 
 <script>

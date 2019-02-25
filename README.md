@@ -1,13 +1,13 @@
 # charlotte-events-app
 events app for whats going on around charlotte, info sourced from https://bit.ly/2VdojLR
 
-Sheetly Google Sheets events API:
+Sheety Google Sheets events API:
 https://api.sheety.co/ce216392-6bb9-4b1f-8940-7d293edf62e4
-
-Maybe could try hosting on Github Pages since that's free or try something with Github Actions that's free and easy to use
 
 Uses Vue Material for the UI: https://vuematerial.io/components/select
 List of Components available to import: https://github.com/vuematerial/vue-material/tree/dev/dist/components
+
+Hosted on netlify: https://charlotte-events-app.netlify.com
 
 
 ## To Do
@@ -18,20 +18,24 @@ List of Components available to import: https://github.com/vuematerial/vue-mater
   + ~~List events on the page by time category~~
   + Sort events by most recent first
   + Extract each event section to its own `EventCategory` component
-+ Make each events section an accordion
-  + Might be easier to absorb all the information and not get overwhelmed
-+ Add ability to see all events going on at a place with the same (next week, this week, future, past organization)
++ Sort events (this week, next week, later, past) in a tab bar at the top
+  + Remove the "Upcoming..." header
+  + Keep the "Feb 4 - Mar..."
+    + Copy the logic that prevents "Feb 4 - 11" from showing up as "Feb 4 - Feb 11" in the event card into the header area
++ Change component organization to be one component in `components/pages/` for each page of the `router-view` then inside there it will have the `EventCategory` components or the `Place` components
++ For the places list view also use a card list
+  + have place name as the header
+  + place address as the subheader with a `&middot;` then the distance away string (e.g. "26 minutes away")
+  + have one action button that says "View Events" and another that says "Get Directions"
++ For the place details view
+  + Have a header that says the place name and maybe the same half bold/half not treatment that the event category titles currently have
+  + have the ability to see all events going on at a place with the same next week, this week, later, past organization
 + Get google maps integrated:
-  + to get distance from event location to current location
-  + link to open directions in Google Maps
-  + locate place on a map
-+ Add tab for switching between events and places
-+ Detail view
-+ Add events in-app
-  + select from a list of previously used locations
-  + calendar for date
-  + etc.
-  + save data in a nosql db
-
-
+  + Geolocate a place to find its lat and long based on just the place name
+  + Use the HTML5 geolocation api to find the user's current lat and long, combined with the lat and long of the event location to get the distance in minutes to the current location (e.g. "26 minutes away")
+    + include avoid highways option in call to google directions api
++ Add a button for adding a new place and searching all the places where events are going on
++ Add events using firebase (tutorials bookmarked in browser on computer)
+  + when adding new events on submit, geocode the location entered into lat, long coordinates that are saved in the firebase db
+    + then use these coordinates as the "destination" when requesting from the google maps API how far a place is
 

@@ -3,7 +3,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import EventsList from '../components/EventsList.vue'
-import EventDetails from '../components/EventDetails.vue'
+import PlacesList from '../components/PlacesList.vue'
 
 // Tell our Vue app to use Vue Router
 Vue.use(VueRouter)
@@ -15,8 +15,8 @@ export const router = new VueRouter({
             component: EventsList
         },
         {
-            path: '/details',
-            component: EventDetails
+            path: '/places',
+            component: PlacesList
         },
         {
             path: '/events',
