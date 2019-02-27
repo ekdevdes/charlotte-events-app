@@ -2,8 +2,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import EventsList from '../components/EventsList.vue'
-import PlacesList from '../components/PlacesList.vue'
+import Events from '../components/pages/Events.vue'
+import Places from '../components/pages/Places.vue'
 
 // Tell our Vue app to use Vue Router
 Vue.use(VueRouter)
@@ -12,11 +12,11 @@ export const router = new VueRouter({
     routes: [
         {
             path: '/',
-            component: EventsList
+            component: Events
         },
         {
             path: '/places',
-            component: PlacesList
+            component: Places
         },
         {
             path: '/events',

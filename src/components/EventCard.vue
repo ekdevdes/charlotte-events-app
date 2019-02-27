@@ -1,5 +1,5 @@
 <template>
-  <md-card md-width-hover class="md-elevation-3">
+  <md-card md-with-hover class="md-accent md-elevation-3">
     <md-card-header>
       <h1 class="md-title event-view__event-title">{{ event.eventName }}</h1>
       <h2 class="md-subhead event-view__event-location">{{ event.location }} &middot; {{ event.price }}</h2>
@@ -26,29 +26,7 @@
         return helpers.ordinalSuffix(number)
       },
       getEventDays(event) {
-        if(event.date.end !== '') {
-          const eventStartDay = event.date.start.getDate()
-          const eventEndDay = event.date.end.getDate()
-          const eventStartMonth = event.date.start.toLocaleString('en-US', { month: 'long' })
-          const eventEndMonth = event.date.end.toLocaleString('en-US', { month: 'long' })
-
-          if(eventStartDay === eventEndDay && eventStartMonth === eventEndMonth) {
-            return `${event.date.start.toLocaleString('en-US', { month: 'long' })} ${this.suffix(event.date.start.getDate())}`
-          } else if(eventStartDay !== eventEndDay && eventStartMonth === eventEndMonth) {
-            return `${event.date.start.toLocaleString('en-US', { month: 'long' })}
-                ${this.suffix(event.date.start.getDate())} -
-                ${this.suffix(event.date.end.getDate())}`
-          } else if(eventStartDay !== eventEndDay && eventEndMonth !== eventEndMonth) {
-            return `${event.date.start.toLocaleString('en-US', { month: 'long' })}
-              ${this.suffix(event.date.start.getDate())} -
-              ${event.date.end.toLocaleString('en-US', { month: 'long' })}
-              ${this.suffix(event.date.end.getDate())}`
-          }
-
-        } else {
-          return `${event.date.start.toLocaleString('en-US', { month: 'long' })}
-            ${this.suffix(event.date.start.getDate())}`
-        }
+        return helpers.outputDateRange(event.date.start, event.date.end, true)
       },
       getEventTime(event) {
         if(event.date.end === '') {

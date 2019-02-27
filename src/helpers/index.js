@@ -21,10 +21,41 @@ const ordinalSuffix = (number) => {
   return number + "th"
 }
 
+const outputDateRange = (startDate, endDate, showDayofTheWeek = false) => {
+  const startDateDayOfTheWeek = (showDayofTheWeek) ? `${startDate.toLocaleString('en-us', {
+    weekday: 'short'
+  })}, ` : ''
+
+  if(endDate !== '') {
+    const eventStartDay = startDate.getDate()
+    const eventEndDay = endDate.getDate()
+    const eventStartMonth = startDate.toLocaleString('en-US', { month: 'long' })
+    const eventEndMonth = endDate.toLocaleString('en-US', { month: 'long' })
+
+    if(eventStartDay === eventEndDay && eventStartMonth === eventEndMonth) {
+      return `${startDateDayOfTheWeek} ${startDate.toLocaleString('en-US', { month: 'long' })}
+        ${ordinalSuffix(startDate.getDate())}`
+    } else if(eventStartDay !== eventEndDay && eventStartMonth === eventEndMonth) {
+      return `${startDate.toLocaleString('en-US', { month: 'long' })}
+          ${ordinalSuffix(startDate.getDate())} -
+          ${ordinalSuffix(endDate.getDate())}`
+    } else if(eventStartDay !== eventEndDay && eventStartMonth !== eventEndMonth) {
+      return `${startDate.toLocaleString('en-US', { month: 'long' })}
+        ${ordinalSuffix(startDate.getDate())} -
+        ${endDate.toLocaleString('en-US', { month: 'long' })}
+        ${ordinalSuffix(endDate.getDate())}`
+    }
+  } else {
+    return `${startDateDayOfTheWeek} ${startDate.toLocaleString('en-US', { month: 'long' })}
+      ${ordinalSuffix(startDate.getDate())}`
+  }
+}
+
 export default {
   currentTime,
   nextWeek,
   twoWeeks,
   future,
-  ordinalSuffix
+  ordinalSuffix,
+  outputDateRange
 }
