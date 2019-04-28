@@ -21,11 +21,18 @@ export const store = new Vuex.Store({
     },
     getters: {
       getEventList(state) {
+        // If the event doesn't have a end time, then use the start date to see if the event passed, otherwise use the end date
+        const hasEventPassed = (event) => {
+          return event.date.end !== "" ?
+              event.date.end.getTime() <= currentTime :
+              event.date.start.getTime() <= currentTime
+        }
+
         return {
           thisWeek: state.events.filter(event => event.date.start.getTime() >= currentTime && event.date.start.getTime() <= nextWeek),
           nextWeek: state.events.filter(event => (event.date.start.getTime() >= nextWeek && event.date.start.getTime() <= twoWeeks)),
           future: state.events.filter(event => (event.date.start.getTime() > twoWeeks)),
-          past: state.events.filter(event => event.date.start.getTime() <= currentTime)
+          past: state.events.filter(event => hasEventPassed(event))
         }
       },
       getLoadingState(state) {
