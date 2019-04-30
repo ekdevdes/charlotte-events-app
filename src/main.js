@@ -7,7 +7,7 @@ import { store } from './store'
 import { router } from './routes'
 
 // Components
-import App from './components/App.vue'
+import App from './components/global/App.vue'
 
 import {
   MdCard,
