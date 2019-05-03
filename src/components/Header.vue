@@ -29,12 +29,7 @@
     },
     mixins: [
       theme
-    ],
-    mounted() {
-      if("standalone" in window.navigator && window.navigator.standalone) {
-        [...document.getElementsByClassName('event-header')][0].classList.add('is-standalone')
-      }
-    }
+    ]
   }
 </script>
 
@@ -48,10 +43,6 @@
     width: 100%;
     top: 0;
     z-index: 3;
-
-    &.is-standalone {
-      top: -40px;
-    }
   }
 
   .event-header__container--secondary {
