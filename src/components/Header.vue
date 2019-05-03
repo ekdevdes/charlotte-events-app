@@ -59,7 +59,8 @@
     height: 30px;
     display: block;
     position: absolute;
-    background: linear-gradient(to bottom, white 0%, white 50%, transparent 100%);
+    background: linear-gradient(to bottom, white 0%, white 50%, rgba(255, 255, 255, .1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, from(white), color-stop(50%, white), to(rgba(255, 255, 255, .1)));
     left: 0;
     bottom: -23px;
     z-index: 2;
@@ -79,7 +80,6 @@
     border-top-right-radius: 10px;
     bottom: 0;
     box-shadow: 1px -10px 5px rgba(113, 119, 135, 0.1);
-    position: absolute;
   }
 
   .event-header__title {
