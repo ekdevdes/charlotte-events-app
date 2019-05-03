@@ -37,14 +37,7 @@
       events() {
         return this.$store.getters.getEventsByType('nextWeek')
       }
-    },
-    mounted() {
-      // Change the background color of the html, body for webkit standalone mode to have a status bar background color
-      [
-        ...document.getElementsByTagName('body'),
-        ...document.getElementsByTagName('html')
-      ].forEach(el => el.style.background = 'var(--secondary-tint-color)')
-    },
+    }
   }
 </script>
 

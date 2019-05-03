@@ -35,7 +35,6 @@
   html,
   body {
     font-family: var(--font-avenir-book);
-    background: var(--primary-tint-color);
   }
 
   /* Utility */
