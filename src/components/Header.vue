@@ -29,12 +29,7 @@
     },
     mixins: [
       theme
-    ],
-    mounted() {
-      if("standalone" in window.navigator && window.navigator.standalone) {
-        [...document.getElementsByClassName('event-header')][0].classList.add('is-standalone')
-      }
-    }
+    ]
   }
 </script>
 
@@ -48,10 +43,6 @@
     width: 100%;
     top: 0;
     z-index: 3;
-
-    &.is-standalone {
-      top: -40px;
-    }
   }
 
   .event-header__container--secondary {
@@ -68,7 +59,7 @@
     height: 30px;
     display: block;
     position: absolute;
-    background: linear-gradient(to bottom, white 0%, white 50%, transparent 100%);
+    // background: linear-gradient(to bottom, white 0%, white 50%, transparent 100%);
     left: 0;
     bottom: -23px;
     z-index: 2;
@@ -88,7 +79,6 @@
     border-top-right-radius: 10px;
     bottom: 0;
     box-shadow: 1px -10px 5px rgba(113, 119, 135, 0.1);
-    position: absolute;
   }
 
   .event-header__title {

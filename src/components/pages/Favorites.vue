@@ -2,7 +2,7 @@
   <div class="event-time event-time__container">
     <Header eventType="Favorites"></Header>
 
-    <div class="event event__wrapper">
+    <div class="event event__wrapper event__wrapper--tertiary">
       <template v-if="events.thisWeek.length === 0 && events.nextWeek.length === 0">
         <div :class="`no-events no-events__container ${theme('no-events__container', 'Favorites')} u-center`">
           <p class="no-events no-events__header u-text-center">No favorited events 🙃.</p>
@@ -77,6 +77,12 @@
       }
     },
     mounted() {
+      // Change the background color of the html, body for webkit standalone mode to have a status bar background color
+      [
+        ...document.getElementsByTagName('body'),
+        ...document.getElementsByTagName('html')
+      ].forEach(el => el.style.background = 'var(--tertiary-tint-color)')
+
       // On initial load of this component load in the events
       this.loadEvents()
 
@@ -98,8 +104,14 @@
     &__header {
       font-family: var(--font-avenir-heavy);
       color: var(--tertiary-tint-color);
-      margin-top: 55vh;
       margin-bottom: 20px;
+      padding-top: 40vh;
+    }
+  }
+
+  .event {
+    &__wrapper--tertiary {
+      height: 100vh;
     }
   }
 </style>

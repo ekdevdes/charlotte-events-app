@@ -144,7 +144,8 @@
 
 <style lang="scss">
   .event__wrapper {
-    margin-top: 155px;
+    margin-top: 148px;
+    background: white;
   }
 
   .event__container {
