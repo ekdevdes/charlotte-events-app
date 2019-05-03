@@ -117,6 +117,9 @@
         const events = JSON.parse(localStorage.getItem('cltEventsApp')) || {}
         const isEventSaved = this.isEventSaved(event)
 
+        const eventStartTime = event.date.start !== "" ? event.date.start.getTime() : ""
+        const eventEndTime = event.date.end !== "" ? event.date.end.getTime() : ""
+
         // If the event already exists in localStorage, remove it, leaving the inactive event type events alone
         if(isEventSaved) {
           localStorage.setItem('cltEventsApp', JSON.stringify({
@@ -126,7 +129,13 @@
         } else {
           // If the event doesn't exist in the store already then add it leaving the inactive events alone
           localStorage.setItem('cltEventsApp', JSON.stringify({
-            [activeEventType]: [...events[activeEventType], event],
+            [activeEventType]: [...events[activeEventType], {
+              ...event,
+              date: {
+                start: eventStartTime,
+                end: eventEndTime
+              }
+            }],
             [inactiveEventType]: [...events[inactiveEventType]]
           }))
         }

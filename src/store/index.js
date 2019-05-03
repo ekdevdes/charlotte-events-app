@@ -14,13 +14,6 @@ const {
   twoWeeks
 } = helpers
 
-// If the event doesn't have a end time, then use the start date to see if the event passed, otherwise use the end date
-const hasEventPassed = (event) => {
-  return event.date.end !== "" ?
-      event.date.end.getTime() <= currentTime :
-      event.date.start.getTime() <= currentTime
-}
-
 const events = (state) => {
   return {
     thisWeek: state.events.filter(event => event.date.start.getTime() >= currentTime && event.date.start.getTime() <= nextWeek),

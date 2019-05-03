@@ -53,8 +53,8 @@
           thisWeeksEvents = thisWeeksEvents.map(event => ({
             ...event,
             date: {
-              start: new Date(event.date.start),
-              end: new Date(event.date.end)
+              start: event.date.start !== "" ? new Date(event.date.start) : "",
+              end: event.date.end !== "" ? new Date(event.date.end) : ""
             }
           }))
         }
@@ -64,8 +64,8 @@
           nextWeeksEvents = nextWeeksEvents.map(event => ({
             ...event,
             date: {
-              start: new Date(event.date.start),
-              end: new Date(event.date.end)
+              start: event.date.start !== "" ? new Date(event.date.start) : "",
+              end: event.date.end !== "" ? new Date(event.date.end) : ""
             }
           }))
         }
