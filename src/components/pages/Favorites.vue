@@ -45,8 +45,30 @@
     methods: {
       loadEvents() {
         const events = JSON.parse(localStorage.getItem('cltEventsApp')) || {}
-        const thisWeeksEvents = events.thisWeek || []
-        const nextWeeksEvents = events.nextWeek || []
+        let thisWeeksEvents = events.thisWeek || []
+        let nextWeeksEvents = events.nextWeek || []
+
+        // The date comes from localStorage as a string but we're expecting a date object
+        if(thisWeeksEvents.length > 0) {
+          thisWeeksEvents = thisWeeksEvents.map(event => ({
+            ...event,
+            date: {
+              start: new Date(event.date.start),
+              end: new Date(event.date.end)
+            }
+          }))
+        }
+
+        // The date comes from localStorage as a string but we're expecting a date object
+        if(nextWeeksEvents.length > 0) {
+          nextWeeksEvents = nextWeeksEvents.map(event => ({
+            ...event,
+            date: {
+              start: new Date(event.date.start),
+              end: new Date(event.date.end)
+            }
+          }))
+        }
 
         this.events = {
           thisWeek: [...thisWeeksEvents],
@@ -63,6 +85,7 @@
         this.loadEvents()
       })
 
+      // Whenever the favorites button is toggled update the events list
       window.addEventListener('FavoriteToggled', (e) => {
         this.loadEvents()
       })

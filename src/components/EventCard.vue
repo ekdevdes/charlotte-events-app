@@ -18,6 +18,7 @@
     <header class="event event__header">
       <h1 class="event event__title">{{ event.eventName }}</h1>
       <h2 class="event event__location">{{ event.location }} &middot; <span>{{ event.price }}</span></h2>
+      <h3 class="event event__date">{{ eventDate }} &middot; <span>{{ eventTime }}</span></h3>
     </header>
 
     <p class="event__description">{{ event.description }}</p>
