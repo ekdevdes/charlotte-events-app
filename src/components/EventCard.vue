@@ -1,5 +1,5 @@
 <template>
-  <div :class="`event event__container ${theme('event__container', eventType)} u-center`">
+  <div :class="`event event__container ${theme('event__container', eventTheme ? eventTheme : eventType)} u-center`">
     <a href="#" class="event event__action event__action--favorite" @click.prevent="toggleFavorite(event)">
       <template v-if="isFavorited">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
@@ -18,7 +18,6 @@
     <header class="event event__header">
       <h1 class="event event__title">{{ event.eventName }}</h1>
       <h2 class="event event__location">{{ event.location }} &middot; <span>{{ event.price }}</span></h2>
-      <h3 class="event event__date">{{ eventDate }} &middot; <span>{{ eventTime }}</span></h3>
     </header>
 
     <p class="event__description">{{ event.description }}</p>
@@ -61,6 +60,10 @@
         type: String,
         required: true
       },
+      eventTheme: {
+        type: String,
+        required: false
+      },
       event: {
         type: Object,
         required: true
@@ -97,30 +100,43 @@
       }
     },
     methods: {
-      toggleFavorite(event) {
+      isEventSaved(event) {
+        const activeEventType = this.eventType === 'This Week' ? 'thisWeek' : 'nextWeek'
         const events = JSON.parse(localStorage.getItem('cltEventsApp')) || {}
-        const thisWeeksEvents = events.thisWeek || []
+        const weeksEvents = events[activeEventType] || []
 
-        const isEventSaved = thisWeeksEvents.find(aEvent => aEvent.title === event.title)
+        const eventInLocalStorage = weeksEvents.find(anEvent => anEvent.eventName === event.eventName) || {}
 
+        return Object.keys(eventInLocalStorage).length > 0
+      },
+      toggleFavorite(event) {
+        const activeEventType = this.eventType === 'This Week' ? 'thisWeek' :  'nextWeek' // current event type (thisWeek or nextWeek)
+        const inactiveEventType = this.eventType === 'This Week' ? 'nextWeek' : 'thisWeek' // inactive eventType
+
+        const events = JSON.parse(localStorage.getItem('cltEventsApp')) || {}
+        const isEventSaved = this.isEventSaved(event)
+
+        // If the event already exists in localStorage, remove it, leaving the inactive event type events alone
         if(isEventSaved) {
-          // remove events from the store if they clicked the favorite button and the event already exists in localStorage
-        } else {
-          // add the event, it must not exist already
-
           localStorage.setItem('cltEventsApp', JSON.stringify({
-            thisWeek: [
-              ...events.thisWeek,
-              event
-            ],
-            nextWeek: [
-              ...events.nextWeek
-            ]
+            [activeEventType]: events[activeEventType].filter(anEvent => anEvent.title !== event.title),
+            [inactiveEventType]: [...events[inactiveEventType]]
+          }))
+        } else {
+          // If the event doesn't exist in the store already then add it leaving the inactive events alone
+          localStorage.setItem('cltEventsApp', JSON.stringify({
+            [activeEventType]: [...events[activeEventType], event],
+            [inactiveEventType]: [...events[inactiveEventType]]
           }))
         }
 
+        window.dispatchEvent(new CustomEvent('FavoriteToggled', []))
+
         this.isFavorited = !this.isFavorited
       }
+    },
+    mounted() {
+      this.isFavorited = this.isEventSaved(this.event)
     }
   }
 </script>

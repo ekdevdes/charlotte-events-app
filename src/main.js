@@ -12,10 +12,13 @@ import App from './components/global/App.vue'
 // Enable the Vue Performance tools only in development (https://goo.gl/AuwCq2)
 Vue.config.performance = true;
 
-localStorage.setItem('cltEventsApp', JSON.stringify({
-  thisWeek: [],
-  nextWeek: []
-}))
+// If the they don't already have the apps localStorage data, add it
+if(!localStorage.getItem('cltEventsApp')) {
+  localStorage.setItem('cltEventsApp', JSON.stringify({
+    thisWeek: [],
+    nextWeek: []
+  }))
+}
 
 new Vue({
   el: '#charlotte-events-app',
