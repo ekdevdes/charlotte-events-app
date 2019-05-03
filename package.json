@@ -1,7 +1,7 @@
 {
   "name": "charlotte-events-app",
   "description": "A Charlotte Events App",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "Ethan <ekramer@redventures.com>",
   "license": "MIT",
   "private": true,
