@@ -11,4 +11,4 @@ List of Components available to import: https://github.com/vuematerial/vue-mater
 
 Hosted on netlify: https://charlotte-events-app.netlify.com
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ef3a7284-5b73-46c2-8f3a-aaf4fa4b833e/deploy-status)](https://app.netlify.com/sites/charlotte-events-app/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/de6423ad-b797-4d78-a539-928551d6a8d0/deploy-status)](https://app.netlify.com/sites/distracted-shirley-d059ad/deploys)
